@@ -15,6 +15,7 @@ class deck:
 			set cutpoint to 0.8 of decks
  		'''
 		self.num = num
+		self.num_of_cards = self.num * 52
 		values = ['A','2','3','4','5','6','7','8','9','T','J','Q','K']
 		suits = ['H','S','D','C']
 		self.deck = []
@@ -24,7 +25,7 @@ class deck:
 					self.deck.append(card(value,suit))
 
 		random.shuffle(self.deck)
-		self.cutpoint = self.num * 52 * 0.8
+		self.cutpoint =  self num_of_cards * 0.8
 		self.index = 0
 
 	def get_next(self):
@@ -32,13 +33,13 @@ class deck:
 			return [card, boolean]
 			boolean indicates whether you need shuffle or not
 		'''
-		next_card = self.deck[self.index]
+		next_card = self.deck[self.index] if self.index < self.num_of_cards else None
 		self.index += 1
 		if self.index > self.cutpoint:
 			need_shuffle = True
 		else:
 			need_shuffle = False
-		return [next_card,need_shuffle]
+		return [next_card, need_shuffle]
 
 	def get_deck(self):
 		return self.deck
